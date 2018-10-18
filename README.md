@@ -1,2 +1,2 @@
 # UniviewGaiaHVstars
-A Uniview module to show the high-velocity stars from Gaia
+A Uniview module to show the hypervelocity stars from Gaia
