@@ -10,7 +10,6 @@ uniform mat4 uv_modelViewMatrix;
 uniform float uv_simulationtimeSeconds;
 
 uniform float trailWidth;
-uniform float trailLength;
 uniform vec4 color0;
 uniform vec4 color1;
 
@@ -45,8 +44,10 @@ void drawLine(vec4 position0, vec4 position1, float time1, float time2, float wi
 
 void main()
 {
-	vec3 pos1 = gl_in[0].gl_Position.xyz;
-	vec3 pos2 = gl_in[1].gl_Position.xyz;
+	vec3 pos1 = 1000.*vec3(-gl_in[0].gl_Position.x-8.3, -gl_in[0].gl_Position.y, gl_in[0].gl_Position.z);
+	vec3 pos2 = 1000.*vec3(-gl_in[1].gl_Position.x-8.3, -gl_in[1].gl_Position.y, gl_in[1].gl_Position.z);
+//	vec3 pos1 = gl_in[0].gl_Position.xyz;
+//	vec3 pos2 = gl_in[1].gl_Position.xyz;
 	float time1 = gl_in[2].gl_Position.x;
 	float time2 = gl_in[2].gl_Position.y;
 	color = color0;
@@ -54,8 +55,7 @@ void main()
 		color = color1;
 	}
 	
-	simTime = (fract(uv_simulationtimeSeconds/60.)-1.);
-	if (true ){
-		drawLine(vec4(pos1,1), vec4(pos2,1),time1,time2,trailWidth);
-	}
+	//simTime = (2.*fract(uv_simulationtimeSeconds/60.)-0.5);
+	simTime = fract(uv_simulationtimeSeconds/60.);
+	drawLine(vec4(pos1,1), vec4(pos2,1),time1,time2,trailWidth);
 }
